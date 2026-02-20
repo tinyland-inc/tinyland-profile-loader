@@ -1,5 +1,5 @@
 {
-  "name": "@tinyland-inc/tinyland-profile-loader",
+  "name": "@tummycrypt/tinyland-profile-loader",
   "version": "0.1.0",
   "description": "File-based markdown profile loader with frontmatter parsing and query helpers",
   "type": "module",
@@ -13,7 +13,10 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "LICENSE"],
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -39,5 +42,9 @@
   },
   "engines": {
     "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }
