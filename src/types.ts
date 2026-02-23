@@ -1,8 +1,8 @@
-/**
- * Frontmatter metadata extracted from a profile markdown file.
- * Uses a loose typing approach with an index signature to allow
- * arbitrary additional fields beyond the known ones.
- */
+
+
+
+
+
 export interface ProfileFrontmatter {
   name?: string;
   displayName?: string;
@@ -21,11 +21,11 @@ export interface ProfileFrontmatter {
   [key: string]: any;
 }
 
-/**
- * A profile loaded from a markdown file on disk.
- * Contains parsed frontmatter, the raw markdown content body,
- * and the resolved slug identifier.
- */
+
+
+
+
+
 export interface Profile {
   frontmatter: ProfileFrontmatter;
   content: string;

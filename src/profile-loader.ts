@@ -4,11 +4,11 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 
-/**
- * Load all profile markdown files from disk.
- * Reads .md, .mdx, and .svx files, parses frontmatter via gray-matter,
- * and returns sorted profiles.
- */
+
+
+
+
+
 export function loadProfilesServer(): Profile[] {
   const config = getConfig();
   const profilesPath = join(config.baseDir, config.contentSubPath ?? 'src/content/profiles');
@@ -37,7 +37,7 @@ export function loadProfilesServer(): Profile[] {
       }
     }
 
-    // Sort by display order, then by name
+    
     profiles.sort((a, b) => {
       if (a.frontmatter.displayOrder !== undefined && b.frontmatter.displayOrder !== undefined) {
         return a.frontmatter.displayOrder - b.frontmatter.displayOrder;
@@ -55,11 +55,11 @@ export function loadProfilesServer(): Profile[] {
   }
 }
 
-/**
- * Get published profiles only.
- * Uses visibility field if present, otherwise falls back to legacy
- * published/hidden boolean checks.
- */
+
+
+
+
+
 export function getPublishedProfilesServer(): Profile[] {
   const profiles = loadProfilesServer();
 
@@ -72,28 +72,28 @@ export function getPublishedProfilesServer(): Profile[] {
   });
 }
 
-/**
- * Get featured profiles (only from published profiles).
- */
+
+
+
 export function getFeaturedProfilesServer(): Profile[] {
   return getPublishedProfilesServer().filter(
     (profile) => profile.frontmatter.featured === true,
   );
 }
 
-/**
- * Find a single profile by its slug.
- * Searches all profiles (including unpublished) by slug.
- */
+
+
+
+
 export function getProfileBySlugServer(slug: string): Profile | null {
   const profiles = loadProfilesServer();
   return profiles.find((profile) => profile.slug === slug) || null;
 }
 
-/**
- * Get profiles filtered by role.
- * Matches against both the single `role` field and the `roles` array.
- */
+
+
+
+
 export function getProfilesByRoleServer(role: string): Profile[] {
   return getPublishedProfilesServer().filter(
     (profile) =>
@@ -101,10 +101,10 @@ export function getProfilesByRoleServer(role: string): Profile[] {
   );
 }
 
-/**
- * Get profiles filtered by tag.
- * Matches against both the `tags` array and the `interests` array.
- */
+
+
+
+
 export function getProfilesByTagServer(tag: string): Profile[] {
   return getPublishedProfilesServer().filter(
     (profile) =>
@@ -112,9 +112,9 @@ export function getProfilesByTagServer(tag: string): Profile[] {
   );
 }
 
-/**
- * Get all unique roles across published profiles, sorted alphabetically.
- */
+
+
+
 export function getAllRolesServer(): string[] {
   const profiles = getPublishedProfilesServer();
   const roleSet = new Set<string>();
@@ -129,9 +129,9 @@ export function getAllRolesServer(): string[] {
   return Array.from(roleSet).sort();
 }
 
-/**
- * Get all unique tags and interests across published profiles, sorted alphabetically.
- */
+
+
+
 export function getAllProfileTagsServer(): string[] {
   const profiles = getPublishedProfilesServer();
   const tagSet = new Set<string>();
@@ -144,10 +144,10 @@ export function getAllProfileTagsServer(): string[] {
   return Array.from(tagSet).sort();
 }
 
-/**
- * Search profiles by a query string.
- * Case-insensitive search across name, displayName, bio, role, and content.
- */
+
+
+
+
 export function searchProfilesServer(query: string): Profile[] {
   const profiles = getPublishedProfilesServer();
   const searchTerm = query.toLowerCase();
@@ -166,10 +166,10 @@ export function searchProfilesServer(query: string): Profile[] {
   });
 }
 
-/**
- * Get a random selection of published profiles.
- * @param count Number of random profiles to return (default: 3)
- */
+
+
+
+
 export function getRandomProfilesServer(count: number = 3): Profile[] {
   const profiles = getPublishedProfilesServer();
   const shuffled = [...profiles].sort(() => Math.random() - 0.5);

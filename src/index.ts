@@ -1,11 +1,11 @@
-// Types
+
 export type { Profile, ProfileFrontmatter } from './types.js';
 
-// Configuration
+
 export type { ProfileLoaderConfig } from './config.js';
 export { configure, getConfig, resetConfig } from './config.js';
 
-// Profile loader functions
+
 export {
   loadProfilesServer,
   getPublishedProfilesServer,
