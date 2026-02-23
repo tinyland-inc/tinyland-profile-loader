@@ -16,9 +16,9 @@ import {
   getRandomProfilesServer,
 } from '../src/profile-loader.js';
 
-/**
- * Helper to create a markdown profile file with YAML frontmatter.
- */
+
+
+
 function createProfileFile(
   dir: string,
   filename: string,
@@ -55,9 +55,9 @@ afterEach(() => {
   rmSync(tmpDir, { recursive: true, force: true });
 });
 
-// ──────────────────────────────────────────────
-// loadProfilesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('loadProfilesServer', () => {
   it('should load .md files', () => {
     createProfileFile(profilesDir, 'alice.md', { name: 'Alice' });
@@ -176,8 +176,8 @@ describe('loadProfilesServer', () => {
     createProfileFile(profilesDir, 'a.md', { name: 'A', displayOrder: 1 });
     createProfileFile(profilesDir, 'c.md', { name: 'C' });
     const profiles = loadProfilesServer();
-    // C has no displayOrder, so the pair (A,C) or (B,C) falls through to name compare
-    // A(1) vs B(2) => A first; then the remaining comparisons use name
+    
+    
     expect(profiles[0].frontmatter.name).toBe('A');
   });
 
@@ -237,9 +237,9 @@ describe('loadProfilesServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getPublishedProfilesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getPublishedProfilesServer', () => {
   it('should return profiles with visibility=published', () => {
     createProfileFile(profilesDir, 'pub.md', { name: 'Published', visibility: 'published' });
@@ -310,9 +310,9 @@ describe('getPublishedProfilesServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getFeaturedProfilesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getFeaturedProfilesServer', () => {
   it('should return only featured=true profiles', () => {
     createProfileFile(profilesDir, 'feat.md', { name: 'Featured', featured: true });
@@ -353,9 +353,9 @@ describe('getFeaturedProfilesServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getProfileBySlugServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getProfileBySlugServer', () => {
   it('should find a profile by slug', () => {
     createProfileFile(profilesDir, 'alice.md', { name: 'Alice' });
@@ -390,9 +390,9 @@ describe('getProfileBySlugServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getProfilesByRoleServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getProfilesByRoleServer', () => {
   it('should filter by single role field', () => {
     createProfileFile(profilesDir, 'dev.md', { name: 'Dev', role: 'developer' });
@@ -436,9 +436,9 @@ describe('getProfilesByRoleServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getProfilesByTagServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getProfilesByTagServer', () => {
   it('should filter by tags array', () => {
     createProfileFile(profilesDir, 'a.md', { name: 'A', tags: ['svelte', 'typescript'] });
@@ -478,9 +478,9 @@ describe('getProfilesByTagServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getAllRolesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getAllRolesServer', () => {
   it('should collect unique roles from role field', () => {
     createProfileFile(profilesDir, 'a.md', { name: 'A', role: 'developer' });
@@ -520,9 +520,9 @@ describe('getAllRolesServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getAllProfileTagsServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getAllProfileTagsServer', () => {
   it('should collect unique tags', () => {
     createProfileFile(profilesDir, 'a.md', { name: 'A', tags: ['svelte', 'typescript'] });
@@ -560,9 +560,9 @@ describe('getAllProfileTagsServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// searchProfilesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('searchProfilesServer', () => {
   it('should search by name', () => {
     createProfileFile(profilesDir, 'alice.md', { name: 'Alice Smith' });
@@ -634,9 +634,9 @@ describe('searchProfilesServer', () => {
   });
 });
 
-// ──────────────────────────────────────────────
-// getRandomProfilesServer
-// ──────────────────────────────────────────────
+
+
+
 describe('getRandomProfilesServer', () => {
   it('should return requested count', () => {
     createProfileFile(profilesDir, 'a.md', { name: 'A' });
