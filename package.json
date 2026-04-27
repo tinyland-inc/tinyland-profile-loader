@@ -1,6 +1,6 @@
 {
   "name": "@tummycrypt/tinyland-profile-loader",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "File-based markdown profile loader with frontmatter parsing and query helpers",
   "type": "module",
   "license": "Zlib AND LicenseRef-Tinyland-Proprietary",
